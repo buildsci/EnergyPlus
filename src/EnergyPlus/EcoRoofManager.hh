@@ -31,6 +31,61 @@ namespace EcoRoofManager {
 	extern bool EcoRoofbeginFlag;
 
 	// Functions
+	
+	void
+	GreenRoof_with_PlantCoverage(
+		int const SurfNum, // Indicator of Surface Number for the current surface
+		int const ZoneNum, // Indicator for zone number where the current surface
+		int & ConstrNum, // Indicator for construction index for the current surface
+        Real64 & TempExt // Exterior temperature boundary condition
+	);
+	
+	Real64 
+	h_conv(
+    //IMPLICIT NONE
+      int const SurfNum,
+      Real64 const Tair_k,
+      Real64 const plant_temp,
+      Real64 const WindSpeed,
+      Real64 const k_air1
+	); 
+	
+	Real64 
+	h_conv_bare(
+    //IMPLICIT NONE
+      int const SurfNum,
+      Real64 const Tair_k,
+      Real64 const BareSoil_temp,
+      Real64 const WindSpeed,
+      Real64 const k_air1
+	);
+	
+	Real64 
+	e_s(
+    //IMPLICIT NONE
+      Real64 const Temperature
+	);
+	
+	Real64 
+	f_Hum(
+    //IMPLICIT NONE
+      Real64 const Temperature,
+      Real64 const eair
+	);
+	
+	Real64 
+	f_temp(
+    //IMPLICIT NONE
+      Real64 const Temperature
+	) ;
+	
+	Real64 
+	gamma_s(
+    //IMPLICIT NONE
+      Real64 const Temperature,
+      Real64 const Cp_air,
+      Real64 const Pa
+	);
 
 	void
 	CalcEcoRoof(
@@ -61,7 +116,7 @@ namespace EcoRoofManager {
 
 	//     NOTICE
 
-	//     Copyright © 1996-2014 The Board of Trustees of the University of Illinois
+	//     Copyright Â© 1996-2014 The Board of Trustees of the University of Illinois
 	//     and The Regents of the University of California through Ernest Orlando Lawrence
 	//     Berkeley National Laboratory.  All rights reserved.
 

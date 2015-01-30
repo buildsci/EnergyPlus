@@ -660,6 +660,14 @@ namespace DataHeatBalance {
 		Real64 InitMoisture; // Initial soil moisture DJS
 		Real64 MinMoisture; // Minimum moisture allowed DJS
 		Real64 RStomata; // Minimum stomatal resistance DJS
+		
+		//***--- PlantCoverage, VWC_FieldCapacity, SW_ExtCoeff, and LW_ExtCoeff are added for
+        //***--- the 'GreenRoof_with_PlantCoverage' model (Neda Yaghoobian 2014)
+        Real64 PlantCoverage; //= 0.0d0       //Plant coverage
+        Real64 VWC_FieldCapacity; //= 0.0d0   //VWC at field capacity
+        Real64 SW_ExtCoeff;       //= 0.0d0   //SW extinction coefficient
+        Real64 LW_ExtCoeff;       //= 0.0d0   //LW extinction coefficient
+		
 		// HAMT
 		int niso; // Number of data points
 		FArray1D< Real64 > isodata; // isotherm values
@@ -821,6 +829,12 @@ namespace DataHeatBalance {
 			InitMoisture( 0.0 ),
 			MinMoisture( 0.0 ),
 			RStomata( 0.0 ),
+			//New properties added for green roof with plant coverage
+			PlantCoverage( 0.0 ),       //Plant coverage
+            VWC_FieldCapacity( 0.0 ),   //VWC at field capacity
+            SW_ExtCoeff( 0.0 ),   //SW extinction coefficient
+            LW_ExtCoeff( 0.0 ),   //LW extinction coefficient
+			// End of change
 			niso( -1 ),
 			isodata( 27, 0.0 ),
 			isorh( 27, 0.0 ),
@@ -980,6 +994,12 @@ namespace DataHeatBalance {
 			Real64 const InitMoisture, // Initial soil moisture DJS
 			Real64 const MinMoisture, // Minimum moisture allowed DJS
 			Real64 const RStomata, // Minimum stomatal resistance DJS
+			//New properties added for green roof with plant coverage
+			Real64 const PlantCoverage, //Plant coverage
+			Real64 const VWC_FieldCapacity, //VWC at field capacity
+			Real64 const SW_ExtCoeff, //SW extinction coefficient
+			Real64 const LW_ExtCoeff, //LW extinction coefficient
+			//change of end
 			int const niso, // Number of data points
 			FArray1< Real64 > const & isodata, // isotherm values
 			FArray1< Real64 > const & isorh, // isotherm RH values
@@ -1137,6 +1157,12 @@ namespace DataHeatBalance {
 			InitMoisture( InitMoisture ),
 			MinMoisture( MinMoisture ),
 			RStomata( RStomata ),
+			//New properties added for green roof with plant coverage
+			PlantCoverage( PlantCoverage ),
+			VWC_FieldCapacity( VWC_FieldCapacity ),
+			SW_ExtCoeff( SW_ExtCoeff ),
+			LW_ExtCoeff( LW_ExtCoeff ),
+			//change of end
 			niso( niso ),
 			isodata( 27, isodata ),
 			isorh( 27, isorh ),
@@ -5347,7 +5373,7 @@ namespace DataHeatBalance {
 
 	//     NOTICE
 
-	//     Copyright © 1996-2014 The Board of Trustees of the University of Illinois
+	//     Copyright \A9 1996-2014 The Board of Trustees of the University of Illinois
 	//     and The Regents of the University of California through Ernest Orlando Lawrence
 	//     Berkeley National Laboratory.  All rights reserved.
 
